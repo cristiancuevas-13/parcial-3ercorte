@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 vista</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
+        background-image: url("./Wallpaper.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    /* HERO fullscreen */
+    .hero {
+        width: 100%;
+        height: 100vh; /* ocupa el 100% de la pantalla */
+        background-image: url(./img/1.jpg); /* <-- cambia esta URL */
+        background-size: cover;       /* Ajusta la imagen proporcionalmente */
+        background-position: center;  /* Centro */
+        background-repeat: no-repeat; /* No repetir */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    /* Capa oscura encima */
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+    }
+
+    .hero-content {
+        position: relative;
+        text-align: center;
+        max-width: 800px;
+    }
+
+    h1 {
+        font-size: 3.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 25px;
+    }
+
+    /* Botón */
+    .btn {
+        display: inline-block;
+        padding: 12px 40px;
+        font-size: 1.1rem;
+        border: 2px solid #fff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: 0.3s ease;
+    }
+
+    .btn:hover {
+        background: white;
+        color: black;
+    }
+
+</style>
+
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Hacia las Ciudades del Mañana del año 2030</h1>
+        <p>
+            En un mundo donde la arquitectura toca el cielo y la tecnología redefine la vida,  
+            comienza un nuevo capítulo lleno de descubrimientos, desafíos y esperanza.
+        </p>
+        <a href="./1/anime.html" target="visor" class="btn">Explorar el Futuro</a>
+    </div>
+</div>
+
+<!-- VIDEO DE YOUTUBE OCULTO PARA QUE SUENE -->
+<!-- <iframe 
+    width="0" 
+    height="0" 
+    src="https://www.youtube.com/embed/VNJZV_-1GdI?autoplay=1&loop=1&playlist=VNJZV_-1GdI"
+    name="visor"
+    frameborder="0"
+    allow="autoplay">
+</iframe> -->
+
+
+</body>
+</html>
