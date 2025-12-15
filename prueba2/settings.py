@@ -36,10 +36,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Load domain from env and ensure it has scheme
+env_domain = os.getenv("DOMINIO")
+if env_domain and not env_domain.startswith("http"):
+    env_domain = f"https://{env_domain}"
+
 CSRF_TRUSTED_ORIGINS = [
-    os.getenv("DOMINIO"),
+    env_domain,
     "https://parcial3ercortepaginaweb-cufyaqb2gpf8d5dc.eastus2-01.azurewebsites.net"
 ] 
+# Remove None/Empty if env var was missing
+CSRF_TRUSTED_ORIGINS = [url for url in CSRF_TRUSTED_ORIGINS if url] 
 
 # Application definition
 
