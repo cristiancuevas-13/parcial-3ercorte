@@ -731,3 +731,12 @@ body.dark-theme .stat-title {
     font-size: 0.8rem;
     font-weight: bold;
 }
+
+/* Table Stripes Utility */
+.row-light {
+    background: #f3f4f6 !important;
+}
+
+.row-dark {
+    background: #ffffff !important;
+}

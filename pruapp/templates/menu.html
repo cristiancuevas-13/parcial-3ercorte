@@ -75,7 +75,7 @@
                     </thead>
                     <tbody>
                         {% for producto in productos %}
-                        <tr style="background: {% cycle '#ddd' '#eee' %}; border-bottom: 1px solid #ccc;">
+                        <tr class="{% cycle 'row-light' 'row-dark' %}" style="border-bottom: 1px solid #ccc;">
                             <td style="padding: 15px;">
                                 <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
                             </td>

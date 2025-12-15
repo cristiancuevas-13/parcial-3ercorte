@@ -83,7 +83,7 @@
                     </thead>
                     <tbody>
                         {% for insumo in insumos %}
-                        <tr style="background: {% cycle '#f3f4f6' '#ffffff' %}; border-bottom: 1px solid #ddd;">
+                        <tr class="{% cycle 'row-light' 'row-dark' %}" style="border-bottom: 1px solid #ddd;">
                             <td style="padding: 15px; font-weight: 700; color: #333;">{{ forloop.counter }}</td>
                             <td style="padding: 15px; color: black; font-weight: 700;">{{ insumo.nombre }}</td>
                             <td style="padding: 15px; color: black; font-weight: 700;">{{ insumo.cantidad }}</td>
