@@ -351,19 +351,34 @@ def inventario_list(request):
         
     return render(request, "inventario.html", {"insumos": insumos})
 
+from django.core.exceptions import ValidationError
+
 # 2. CREAR INSUMO
 def crear_insumo(request):
     if 'usuario_id' not in request.session:
         return redirect("login")
     
     if request.method == "POST":
-        Insumo.objects.create(
-            nombre=request.POST.get("nombre"),
-            cantidad=request.POST.get("cantidad"),
-            ultima_info=request.POST.get("ultima_info"),
-            fecha=request.POST.get("fecha") if request.POST.get("fecha") else None
-        )
-        return redirect("inventario_list")
+        try:
+            Insumo.objects.create(
+                nombre=request.POST.get("nombre"),
+                cantidad=request.POST.get("cantidad"),
+                ultima_info=request.POST.get("ultima_info"),
+                fecha=request.POST.get("fecha") if request.POST.get("fecha") else None
+            )
+            return redirect("inventario_list")
+        except ValidationError as e:
+            return render(request, "insumo_form.html", {
+                "titulo": "Nuevo Insumo",
+                "error": f"Error de validación: {e}",
+                "insumo": request.POST  # Keep user input
+            })
+        except Exception as e:
+             return render(request, "insumo_form.html", {
+                "titulo": "Nuevo Insumo",
+                "error": f"Error: {e}",
+                "insumo": request.POST
+            })
         
     return render(request, "insumo_form.html", {"titulo": "Nuevo Insumo"})
 
@@ -375,14 +390,28 @@ def editar_insumo(request, id):
     insumo = get_object_or_404(Insumo, id=id)
     
     if request.method == "POST":
-        insumo.nombre = request.POST.get("nombre")
-        insumo.cantidad = request.POST.get("cantidad")
-        insumo.ultima_info = request.POST.get("ultima_info")
-        fecha = request.POST.get("fecha")
-        insumo.fecha = fecha if fecha else None
-        
-        insumo.save()
-        return redirect("inventario_list")
+        try:
+            insumo.nombre = request.POST.get("nombre")
+            insumo.cantidad = request.POST.get("cantidad")
+            insumo.ultima_info = request.POST.get("ultima_info")
+            fecha = request.POST.get("fecha")
+            insumo.fecha = fecha if fecha else None
+            
+            insumo.full_clean() # Force validation before save
+            insumo.save()
+            return redirect("inventario_list")
+        except ValidationError as e:
+            return render(request, "insumo_form.html", {
+                "titulo": "Editar Insumo",
+                "error": f"Error de validación: {e}",
+                "insumo": request.POST 
+            })
+        except Exception as e:
+            return render(request, "insumo_form.html", {
+                "titulo": "Editar Insumo",
+                "error": f"Error: {e}",
+                "insumo": request.POST
+            })
         
     return render(request, "insumo_form.html", {"titulo": "Editar Insumo", "insumo": insumo})
 

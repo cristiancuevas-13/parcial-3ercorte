@@ -8,6 +8,12 @@
     <div class="glass-card" style="max-width: 500px; background: white; color: #333; border: none;">
         <h2 class="text-center" style="color: #333; margin-bottom: 2rem;">{{ titulo }}</h2>
         
+        {% if error %}
+        <div style="background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+            {{ error }}
+        </div>
+        {% endif %}
+        
         <form method="post">
             {% csrf_token %}
             

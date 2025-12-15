@@ -86,7 +86,8 @@
                     </thead>
                     <tbody>
                         {% for empleado in empleados %}
-                        <tr style="background: {% cycle '#f3f4f6' '#ffffff' %}; border-bottom: 1px solid #ddd;">
+                        {% cycle '#f3f4f6' '#ffffff' as bg_color silent %}
+                        <tr style="background: {{ bg_color }}; border-bottom: 1px solid #ddd;">
                             <td style="padding: 15px; font-weight: 700; color: #333; display: flex; align-items: center; gap: 10px;">
                                 <img src="{{ empleado.foto_url|default:'https://via.placeholder.com/40' }}" alt="Foto" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                                 {{ empleado.nombre }}
