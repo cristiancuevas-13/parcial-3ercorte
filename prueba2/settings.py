@@ -36,7 +36,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = [os.getenv("DOMINIO")] #--PONER 
+CSRF_TRUSTED_ORIGINS = [
+    os.getenv("DOMINIO"),
+    "https://parcial3ercortepaginaweb-cufyaqb2gpf8d5dc.eastus2-01.azurewebsites.net"
+] 
 
 # Application definition
 
