@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos - Pedidos al Instante</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'pruapp/css/styles.css' %}">
+</head>
+<body class="dark-theme"> 
+    <!-- Dashboard Layout (Used as Welcome Page) -->
+    <div class="dashboard-layout">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                 <img src="{% static 'pruapp/img/logo.png' %}" alt="Logo" style="max-width: 180px; height: auto; border-radius: 20px;">
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#" class="sidebar-link active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    Dashboard
+                </a>
+                <a href="#" class="sidebar-link" onclick="alert('Debes iniciar sesión para acceder a esta sección'); return false;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    Menu
+                </a>
+                <a href="#" class="sidebar-link" onclick="alert('Debes iniciar sesión para acceder a esta sección'); return false;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    Inventario
+                </a>
+                <a href="#" class="sidebar-link" onclick="alert('Debes iniciar sesión para acceder a esta sección'); return false;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Empleados
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content-area">
+            
+            <!-- Top Bar with Register Button -->
+            <header style="display: flex; justify-content: flex-end; margin-bottom: 2rem; align-items: center; gap: 20px;">
+                
+                <!-- NEW: Register Button -->
+                <a href="{% url 'formulario' %}" class="btn" style="background: linear-gradient(135deg, #ef4444, #b91c1c); padding: 10px 24px; border-radius: 50px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                    Registrarse / Iniciar Sesión
+                </a>
+
+                <!-- Toggle Switch (Visual) -->
+                <div style="width: 50px; height: 26px; background: rgba(255,255,255,0.2); border-radius: 20px; position: relative;">
+                    <div style="width: 22px; height: 22px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 26px;"></div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-header">
+                <div>
+                    <h1>Dashboard de Gestion</h1>
+                </div>
+                <div class="filter-pills">
+                    <span class="filter-pill active">Hoy</span>
+                    <span class="filter-pill">Semana</span>
+                    <span class="filter-pill">Mes</span>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- Card 1: Ingresos -->
+                <div class="stat-card card-ingresos">
+                    <div>
+                        <div class="stat-title">Ingresos (hoy)</div>
+                        <div class="stat-value">2'500.000 <span style="font-size: 1rem; color: #888;">COP</span></div>
+                    </div>
+                    <!-- Fake Chart Line -->
+                    <div style="display: flex; justify-content: flex-end;">
+                        <svg width="100" height="40" viewBox="0 0 100 40" fill="none">
+                            <path d="M0 35 L20 30 L40 38 L60 15 L80 25 L100 5" stroke="#ef4444" stroke-width="2"></path>
+                        </svg>
+                        <span style="color: #ef4444; font-size: 1.2rem; transform: rotate(-45deg);">➤</span> 
+                    </div>
+                </div>
+
+                <!-- Card 2: Pedido en Curso -->
+                <div class="stat-card">
+                    <div class="stat-title">Pedido en Curso</div>
+                    <div style="text-align: center; font-size: 4rem; font-weight: 800; color: #fff;">
+                        19
+                    </div>
+                </div>
+
+                <!-- Card 3: Productos mas vendidos -->
+                <div class="stat-card">
+                    <div class="stat-title">Productos mas vendidos</div>
+                    <ul class="top-products-list">
+                        <li class="top-product-item">
+                            <span class="rank-badge">1.</span>
+                            <span>Hamburguesa clásica</span>
+                        </li>
+                        <li class="top-product-item">
+                            <span class="rank-badge">2.</span>
+                            <span>Pizza Peperonni</span>
+                        </li>
+                        <li class="top-product-item">
+                            <span class="rank-badge">3.</span>
+                            <span>Gaseosa 3L</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Pedidos en Mesa -->
+                <div class="stat-card">
+                    <div class="stat-title">Pedidos en Mesa</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: #999;"></span>
+                            <span style="color: #ccc;">Ocupadas</span>
+                        </div>
+                         <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></span>
+                            <span style="color: #ccc;">En preparación</span>
+                        </div>
+                         <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: #ec4899;"></span>
+                            <span style="color: #ccc;">En Espera</span>
+                        </div>
+                         <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 12px; height: 12px; border-radius: 50%; background: #10b981;"></span>
+                            <span style="color: #ccc;">Disponibles</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

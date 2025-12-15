@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-center">
+    <div class="glass-card" style="max-width: 500px; background: white; color: #333; border: none;">
+        <h2 class="text-center" style="color: #333; margin-bottom: 2rem;">{{ titulo }}</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="nombre" style="color: #666;">Nombre Completo</label>
+                <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" required 
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="rol" style="color: #666;">Rol (Cargo)</label>
+                <input type="text" id="rol" name="rol" value="{{ empleado.rol }}" required placeholder="Ej: Cajero"
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="edad" style="color: #666;">Edad</label>
+                <input type="number" id="edad" name="edad" value="{{ empleado.edad }}" required
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono" style="color: #666;">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" value="{{ empleado.telefono }}" required
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+            
+             <div class="form-group">
+                <label for="foto_url" style="color: #666;">URL Foto</label>
+                <input type="url" id="foto_url" name="foto_url" value="{{ empleado.foto_url }}" placeholder="https://..."
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                <label for="estado" style="color: #666; margin: 0;">¿Activo?</label>
+                <input type="checkbox" id="estado" name="estado" {% if empleado.estado or not empleado %}checked{% endif %} 
+                       style="width: 20px; height: 20px;">
+            </div>
+
+            <div class="flex-between gap-2 mt-4">
+                <a href="{% url 'empleados_list' %}" class="btn btn-outline" style="border-color: #ccc; color: #666;">Cancelar</a>
+                <button type="submit" class="btn" style="background: #ef4444; color: white; border: none;">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

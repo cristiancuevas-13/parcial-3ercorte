@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-center">
+    <div class="glass-card" style="max-width: 500px; background: white; color: #333; border: none;">
+        <h2 class="text-center" style="color: #333; margin-bottom: 2rem;">{{ titulo }}</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="nombre" style="color: #666;">Nombre del Producto</label>
+                <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}" required 
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="precio" style="color: #666;">Precio (COP)</label>
+                <!-- Changed to text to allow user to type dots/commas without browser validation error -->
+                <!-- regex pattern allows numbers, dots, commas -->
+                <input type="text" id="precio" name="precio" value="{{ producto.precio }}" required 
+                       placeholder="Ej: 25000 o 25.000"
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+                <small style="color: #999;">Máximo: $1.000.000</small>
+            </div>
+
+            <div class="form-group">
+                <label for="imagen_url" style="color: #666;">URL de la Foto</label>
+                <input type="url" id="imagen_url" name="imagen_url" value="{{ producto.imagen_url }}" placeholder="https://..."
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                <label for="stock" style="color: #666; margin: 0;">¿En Stock?</label>
+                <input type="checkbox" id="stock" name="stock" {% if producto.stock or not producto %}checked{% endif %} 
+                       style="width: 20px; height: 20px;">
+            </div>
+
+            <div class="flex-between gap-2 mt-4">
+                <a href="{% url 'menu_list' %}" class="btn btn-outline" style="border-color: #ccc; color: #666;">Cancelar</a>
+                <button type="submit" class="btn" style="background: #ef4444; color: white; border: none;">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

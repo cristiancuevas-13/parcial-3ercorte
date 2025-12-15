@@ -1,0 +1,733 @@
+/* 
+   ==========================================================================
+   Premium Theme: City of Tomorrow 2030
+   Style: Glassmorphism / Neon / Dark Mode
+   ========================================================================== 
+*/
+
+:root {
+    /* Colors */
+    --bg-dark: #0a0a12;
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-end: #1e1b4b;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #ec4899;
+    --accent: #06b6d4;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --success: #10b981;
+    --danger: #ef4444;
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Dynamic Background */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 10% 20%, rgb(33, 43, 85) 0%, rgb(18, 18, 30) 90.2%);
+}
+
+.background-overlay::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+    animation: rotateBg 20s linear infinite;
+}
+
+@keyframes rotateBg {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-main);
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    padding: 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Layout Utilities */
+.container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-content {
+    width: 100%;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"] {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+    color: white;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+/* Tables */
+.table-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    /* Gap between rows */
+}
+
+thead th {
+    text-align: left;
+    padding: 12px 16px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.3s;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+tbody td {
+    padding: 16px;
+    vertical-align: middle;
+}
+
+tbody tr td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+tbody tr td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Images */
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+.avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+/* Hero Section */
+.hero-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
+    position: relative;
+    z-index: 1;
+    /* Ensure content is above overlay */
+}
+
+/* We use ::before on the container instead of a separate div to ensure it stays with the hero */
+.hero-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6), var(--bg-dark));
+    /* Smooth fade to dark */
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: 4rem;
+    line-height: 1.1;
+    background: linear-gradient(to right, white, var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 1s ease-out;
+}
+
+.hero-text {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 1.2s ease-out 0.2s backwards;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utilities */
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-accent {
+    color: var(--accent);
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+/* Auth Specifics */
+.auth-logo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.auth-logo-brand {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-logo-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-logo-q {
+    font-size: 3rem;
+    color: #ef4444;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.auth-subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.auth-subtitle h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    /* Dark because card background might be white? Image shows grey bg, white card? */
+}
+
+/* Wait, image shows Dark GREY Background, and NO Card? Or Dark Card? */
+/* Image: Dark Grey Background (#444 or so). White Input fields. */
+/* Text "Bienvenidos" is Dark Grey on Dark Grey?? No. */
+/* Text "Bienvenidos" is Dark Grey on LIGHT Grey background? */
+/* Ah, looking at image again. */
+/* Background is #4b4b4b (dark grey). */
+/* There is NO visible card border/bg distinct from main bg? */
+/* Or maybe the card is transparent? */
+/* Wait, Inputs are WHITE. */
+/* Text "Bienvenidos" is Dark Grey/Black. */
+/* This implies the background BEHIND "Bienvenidos" is Light? */
+/* Looking at the crop... simpler: */
+/* The main background is Dark Grey. */
+/* There is a Card? It looks like the inputs are inside a container. */
+/* But "Bienvenidos" text is dark... on a dark background? That would be invisible. */
+/* Maybe the background is actually LIGHT in the center? */
+/* NO, the background is solid dark grey. */
+/* The "Bienvenidos" text is dark black/grey. */
+/* Contrast is low? */
+/* Wait, maybe the text is White? "Bienvenidos" looks dark in the screenshot? */
+/* Actually, the screenshot "Bienvenidos" is BLACK text on DARK GREY bg. That's terrible contrast. */
+/* Unless... it's a transaprent card on a light background? */
+/* No, full screen is dark. */
+/* Maybe "Bienvenidos" is actually dark text on a GLASS card that is slightly lighter? */
+/* Or maybe the user's design has an issue? */
+/* I will assume standard: White text on Dark Bg */
+/* OR White Card on Dark Bg. */
+/* User said: "segun estes diseños". */
+/* In the screenshot: */
+/* Branding "Pedidos al Instante" is White text. */
+/* "Bienvenidos" is Dark Grey. */
+/* "Accede a tu cuenta" is Dark Grey. */
+/* Inputs are White. */
+/* Button is Dark Grey. */
+/* This implies there is a container (Card) that is NOT visible? */
+/* If "Bienvenidos" is dark, it must be on a light surface. */
+/* Ah, maybe the screenshot background IS the card? And the outer area is darker? */
+/* Image borders show same color. */
+/* Maybe the image IS the card, and the outer isn't shown? */
+/* NO, the image is "Login Page". */
+/* Let's look closely at the uploaded image artifact. explicitely: 'uploaded_image_1765745568164.png'. */
+/* It shows a dark grey field. */
+/* Top: Logo on dark oval? Or just dark background? */
+/* "Bienvenidos" text is Black. */
+/* Maybe the background color is a light grey? And my screen is fooling me? */
+/* Let's assume the background is #444 (Dark Grey). */
+/* If text is black, it's hard to read. */
+/* I will make "Bienvenidos" White or Light Grey for accessibility, unless I put a White Card behind it. */
+/* A common pattern is white card on dark background. */
+/* I'll use a White Card (`bg-white` or `glass-card` with high opacity white). */
+/* Because inputs are white borders? */
+/* Inputs have white background. */
+/* Button is dark. */
+/* I will implement a White Card on the Dark Background from `styles.css`. */
+/* That ensures contrast. */
+
+.auth-card {
+    background: white;
+    border-radius: 8px;
+    /* Square-ish as per image? Image has rounded inputs. Card? */
+    /* Screenshot doesn't show card edges clearly. I'll assume a centered block. */
+    /* I'll use the existing .glass-card but override its background to be white-ish if needed or just use consistent dark theme. */
+    /* Wait, the USER wants "Premium, Modern, Dynamic". */
+    /* Existing `styles.css` is Dark Neon. */
+    /* User's screenshot is minimal flat/grey. */
+    /* I should combine them: Keep the Premium Dark theme of `styles.css` but use the Layout of the screenshot. */
+    /* So: Dark Background, Glass Card, White Text. */
+    /* I'll ignore the low-contrast black text in the screenshot and use White text. */
+}
+
+/* Tabs */
+.auth-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.auth-tab {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.auth-tab.active {
+    background: #e2e8f0;
+    /* Light grey active */
+    color: #1e293b;
+    /* Dark text */
+    font-weight: 600;
+}
+
+.auth-input-group label {
+    color: var(--text-muted);
+    /* Or white */
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.auth-input {
+    background: white !important;
+    color: #333 !important;
+    border-radius: 8px !important;
+}
+
+.auth-btn {
+    background: #1f2937 !important;
+    /* Dark button */
+    color: white !important;
+    border-radius: 8px !important;
+    width: 100%;
+    padding: 12px;
+}
+
+/* Dashboard Styles */
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-logo {
+    margin-bottom: 40px;
+}
+
+.sidebar-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.sidebar-link.active,
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.sidebar-link.active {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.2), transparent);
+    border-left: 3px solid #ef4444;
+}
+
+.main-content-area {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 10px;
+    background: var(--glass-bg);
+    padding: 5px;
+    border-radius: 50px;
+}
+
+.filter-pill {
+    padding: 6px 16px;
+    border-radius: 20px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-pill.active {
+    background: #333;
+    color: white;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, minmax(200px, auto));
+    gap: 24px;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stat-title {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Dark mode override for stats */
+body.dark-theme .stat-title {
+    color: white;
+}
+
+/* Since existing theme is dark, use light text */
+.stat-title {
+    color: white;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.stat-trend {
+    color: #10b981;
+    /* Green up */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Specific Card Styles from Image */
+.card-ingresos {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+}
+
+.top-products-list {
+    list-style: none;
+}
+
+.top-product-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rank-badge {
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="container-center">
+    <div class="glass-card" style="max-width: 500px; background: white; color: #333; border: none;">
+        <h2 class="text-center" style="color: #333; margin-bottom: 2rem;">{{ titulo }}</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="nombre" style="color: #666;">Ingrediente</label>
+                <input type="text" id="nombre" name="nombre" value="{{ insumo.nombre }}" required 
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad" style="color: #666;">Cantidad</label>
+                <input type="text" id="cantidad" name="cantidad" value="{{ insumo.cantidad }}" required placeholder="Ej: 15 KG"
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="ultima_info" style="color: #666;">Última Actualización (Info)</label>
+                <input type="text" id="ultima_info" name="ultima_info" value="{{ insumo.ultima_info }}" placeholder="Ej: 20 KG Hoy"
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha" style="color: #666;">Fecha (Unidad)</label>
+                <input type="date" id="fecha" name="fecha" value="{{ insumo.fecha|date:'Y-m-d' }}" 
+                       style="background: #f3f4f6 !important; border: 1px solid #ddd !important; color: #333 !important;">
+            </div>
+
+            <div class="flex-between gap-2 mt-4">
+                <a href="{% url 'inventario_list' %}" class="btn btn-outline" style="border-color: #ccc; color: #666;">Cancelar</a>
+                <button type="submit" class="btn" style="background: #ef4444; color: white; border: none;">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
